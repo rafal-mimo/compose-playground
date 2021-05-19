@@ -75,7 +75,13 @@ fun BottomNavigation(navController: NavHostController, routes: List<Routes>) {
                 },
                 selected = currentRoute == it.route,
                 onClick = {
-                    navController.navigate(it.route)
+                    navController.navigate(it.route) {
+                        popUpTo(navController.graph.startDestinationRoute!!) {
+                            saveState = true
+                        }
+                        restoreState = true
+                        launchSingleTop = true
+                    }
                 }
             )
         }
