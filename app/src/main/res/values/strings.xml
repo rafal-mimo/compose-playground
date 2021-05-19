@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">compose</string>
+
+    <!-- Navigation items -->
+    <string name="navigation_item_main">Main</string>
+    <string name="navigation_item_profile">Profile</string>
 </resources>
