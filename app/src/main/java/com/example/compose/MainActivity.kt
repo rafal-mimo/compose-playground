@@ -31,15 +31,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
 
-            ComposeTheme {
-                Scaffold(
-                    bottomBar = {
-                        BottomNavigation(navController, listOf(Routes.Main, Routes.Profile))
-                    },
-                ) {
-                    BottomNavigationConfiguration(navController)
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = { Text(text = "AppBar") }
+                    )
+                },
+                bottomBar = {
+                    BottomNavigation(navController, listOf(Routes.Main, Routes.Profile))
                 }
-
+            ) {
+                BottomNavigationConfiguration(navController)
             }
         }
     }
