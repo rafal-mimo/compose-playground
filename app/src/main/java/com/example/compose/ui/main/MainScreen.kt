@@ -2,6 +2,7 @@ package com.example.compose.ui.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
@@ -15,8 +16,8 @@ import androidx.compose.ui.unit.sp
 import com.example.compose.ui.theme.ComposeTheme
 
 @Composable
-fun MainScreen() {
-    Surface(color = MaterialTheme.colors.background) {
+fun MainScreen(mainScreenViewModel: MainScreenViewModel) {
+    Surface(color = MaterialTheme.colors.background, modifier = Modifier.fillMaxSize()) {
         ComposeTheme {
             ItemList()
         }
@@ -36,7 +37,7 @@ private fun ItemList() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun Preview() {
     ItemList()

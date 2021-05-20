@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -53,10 +54,14 @@ sealed class Routes(val route: String, @StringRes val title: Int, val icon: Imag
 private fun BottomNavigationConfiguration(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Routes.Main.route) {
         composable(Routes.Main.route) {
-            MainScreen()
+            MainScreen(
+                hiltViewModel(navController.getBackStackEntry(Routes.Main.route))
+            )
         }
         composable(Routes.Profile.route) {
-            ProfileScreen()
+            ProfileScreen(
+                hiltViewModel(navController.getBackStackEntry(Routes.Profile.route))
+            )
         }
     }
 }
