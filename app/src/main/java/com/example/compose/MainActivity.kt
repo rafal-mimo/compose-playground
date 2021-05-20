@@ -31,14 +31,19 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
 
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry?.destination?.route
+
             Scaffold(
                 topBar = {
                     TopAppBar(
-                        title = { Text(text = "AppBar") }
+                        title = {
+                            Text(stringResource(id = Routes.routeFromString(currentRoute).title))
+                        }
                     )
                 },
                 bottomBar = {
-                    BottomNavigation(navController, listOf(Routes.Main, Routes.Profile))
+                    BottomNavigation(navController, Routes.ALL)
                 }
             ) {
                 BottomNavigationConfiguration(navController)
@@ -50,6 +55,12 @@ class MainActivity : ComponentActivity() {
 sealed class Routes(val route: String, @StringRes val title: Int, val icon: ImageVector) {
     object Main : Routes(route = "/main", R.string.navigation_item_main, Icons.Filled.Home)
     object Profile : Routes(route = "/profile", R.string.navigation_item_profile, Icons.Filled.Info)
+
+    companion object {
+        val ALL = listOf(Main, Profile)
+
+        fun routeFromString(route: String?) = ALL.find { route == it.route } ?: Main
+    }
 }
 
 @Composable

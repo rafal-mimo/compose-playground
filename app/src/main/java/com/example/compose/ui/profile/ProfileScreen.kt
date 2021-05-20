@@ -26,7 +26,7 @@ fun ProfileScreen(profileScreenViewModel: ProfileScreenViewModel) {
     val userStateFlow = usernameFlowLifecycleAware.collectAsState(initial = "loading...")
     val userStateLiveState = profileScreenViewModel.usernameLiveData.observeAsState("loading...")
 
-    Surface(color = MaterialTheme.colors.primary, modifier = Modifier.fillMaxSize()) {
+    Surface(color = MaterialTheme.colors.background, modifier = Modifier.fillMaxSize()) {
         ComposeTheme {
             Column {
                 Text(text = "Flow value: ${userStateFlow.value}", modifier = Modifier.padding(16.dp, 16.dp))
